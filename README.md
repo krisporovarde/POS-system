@@ -4,7 +4,7 @@
 3. Tobias Reiter
 
 ## Homework 1:
-<When you finish your homework, add a link pointing to the solution here (for example, a link to a page on the wiki)> 
+20 user stories: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog  
 
 ## Homework 2:
 <Links to the solution>
