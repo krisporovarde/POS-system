@@ -4,7 +4,7 @@
 3. Tobias Reiter
 
 ## Homework 1:
-20 user stories: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog  
+Homework 1: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog  
 
 ## Homework 2:
 <Links to the solution>
