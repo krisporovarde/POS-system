@@ -7,7 +7,7 @@
 Homework 1: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog  
 
 ## Homework 2:
-<Links to the solution>
+Homework 2: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog
 
 ## Homework 3:
 <Links to the solution>
