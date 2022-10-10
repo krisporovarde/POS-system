@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TitledPane alignment="TOP_CENTER" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Team info" textAlignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane alignment="TOP_CENTER" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Team info" textAlignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <TextFlow prefHeight="549.0" prefWidth="598.0">
          <children>
@@ -14,8 +14,10 @@
                   <TextArea prefHeight="222.0" prefWidth="335.0" text="Team name          LG-8-Team6&#10;&#10;Contact                tobias.reiter@ut.ee&#10;&#10;Team members    Tobias Reiter, Tarvi Tamm, Kris Porovarde" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                  </ImageView>
+                  <ImageView fitHeight="258.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/C:/Users/37252/lg8-team6/SaleSystemGUI/src/main/resources/LV.png" />
+                     </image></ImageView>
                </right>
             </BorderPane>
          </children></TextFlow>
