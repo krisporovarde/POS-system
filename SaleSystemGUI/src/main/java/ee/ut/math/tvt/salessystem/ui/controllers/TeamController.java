@@ -1,14 +1,18 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 
+import javafx.fxml.Initializable;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.Set;
 
-public class TeamController {
+public class TeamController implements Initializable {
     private String teamName;
     private String contactPerson;
     private String[] teamMembers;
@@ -56,11 +60,7 @@ public class TeamController {
         }
     }
 
-
-
-
-
-
-
-
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO refresh view after adding new items
+    }
 }
