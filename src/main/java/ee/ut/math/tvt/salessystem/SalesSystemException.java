@@ -2,6 +2,10 @@ package ee.ut.math.tvt.salessystem;
 
 /**
  * Base class for sales system exceptions
+ * This is
+ * an
+ * example
+ * file
  */
 public class SalesSystemException extends RuntimeException {
 
