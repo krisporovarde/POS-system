@@ -83,6 +83,8 @@ public class SalesSystemUI extends Application {
         return fxmlLoader.load();
     }
     //Merge conflict2
+    // ted123
+
 }
 
 
