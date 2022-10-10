@@ -82,7 +82,7 @@ public class SalesSystemUI extends Application {
         fxmlLoader.setController(controller);
         return fxmlLoader.load();
     }
-    //Merge conflict
+    //Merge conflict2
 }
 
 
