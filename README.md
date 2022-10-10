@@ -7,13 +7,13 @@
 Homework 1: https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog  
 
 ## Homework 2:
-Homework 2:  https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog
-
-## Homework 3:
-Homework 3: 
-Domain model - https://bitbucket.org/tobiasreiter/lg8-team6/wiki/Domain%20model
+Homework 2:  Domain model - https://bitbucket.org/tobiasreiter/lg8-team6/wiki/Domain%20model
 Use cases - https://bitbucket.org/tobiasreiter/lg8-team6/wiki/Use%20cases
 Child issues - https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog?selectedIssue=LG-33
+
+## Homework 3:
+Homework 3: under commits
+
 ## Homework 4:
 <Links to the solution>
 

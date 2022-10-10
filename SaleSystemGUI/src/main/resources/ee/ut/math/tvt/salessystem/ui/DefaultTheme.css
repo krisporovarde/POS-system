@@ -196,6 +196,7 @@
 .tab-pane .tab:hover
 {
     -fx-background-color: b_color;
+    -fx-cursor: hand;
 }
 
 /*******
@@ -250,6 +251,7 @@
  
 .button:hover{
     -fx-background-color: #3a3a3a;
+    -fx-cursor: hand;
 }
 
  
@@ -308,6 +310,7 @@
 .toggle-button:hover {
     -fx-text-fill: #d8d8d8;
     -fx-background-color: #3a3a3a;
+    -fx-cursor: hand;
 }
  
 .toggle-button:selected {
@@ -840,4 +843,15 @@
 .list-spinner:disabled {
     -fx-opacity: .4;
      
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * TextArea                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-area {
+    -fx-background-color: control_color;
+    -fx-border-style: none;
 }
