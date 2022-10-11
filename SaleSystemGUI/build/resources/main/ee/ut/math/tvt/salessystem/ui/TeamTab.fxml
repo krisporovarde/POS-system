@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<TitledPane alignment="TOP_CENTER" animated="false" collapsible="false" text="Team info" textAlignment="CENTER" >
+   <content>
+      <TextFlow prefHeight="549.0" prefWidth="598.0">
+         <children>
+            <BorderPane prefHeight="258.0" prefWidth="597.0">
+               <left>
+                  <TextArea prefHeight="222.0" prefWidth="335.0" text="Team name          LG-8-Team6&#10;&#10;Contact                tobias.reiter@ut.ee&#10;&#10;Team members    Tobias Reiter, Tarvi Tamm, Kris Porovarde" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <ImageView fitHeight="258.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+<!--                     <image>-->
+<!--                        <Image url="LV.png" />-->
+<!--                     </image>-->
+                  </ImageView>
+               </right>
+            </BorderPane>
+         </children></TextFlow>
+   </content>
+</TitledPane>

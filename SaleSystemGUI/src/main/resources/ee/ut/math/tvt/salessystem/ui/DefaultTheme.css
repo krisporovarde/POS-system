@@ -205,7 +205,7 @@
  
  .titled-pane 
 {
--fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";    
+/*-fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";    */
 -fx-text-fill: main_text_color;
  -fx-border-color: title_color, title_color;
     -fx-border-width: 1, 1;
