@@ -1,7 +1,5 @@
 ee/ut/math/tvt/salessystem/ui/controllers/HistoryController.java
  ee.ut.math.tvt.salessystem.ui.controllers.HistoryController
-ee/ut/math/tvt/salessystem/ui/controllers/TeamController.java
- ee.ut.math.tvt.salessystem.ui.controllers.TeamController
 ee/ut/math/tvt/salessystem/ui/controllers/StockController.java
  ee.ut.math.tvt.salessystem.ui.controllers.StockController
 ee/ut/math/tvt/salessystem/ui/SalesSystemUI.java

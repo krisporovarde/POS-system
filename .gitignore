@@ -1,7 +1,7 @@
 .classpath
-  .gradle
-  .idea
-  .project
-  .settings
-  bin/*
-  build/*
+.gradle
+.idea
+.project
+.settings
+bin/*
+build/*
