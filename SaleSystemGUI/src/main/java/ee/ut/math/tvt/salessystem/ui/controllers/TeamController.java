@@ -54,21 +54,21 @@ public class TeamController implements Initializable {
 //        System.out.println(teamName);
 //    }
 //
-    public void ReadProperties() throws Exception{
-        Properties teaminfo = new Properties();
-        try (final InputStream inputStream = this.getClass().getResourceAsStream("src/main/resources/application.properties")) {
-            teaminfo.load(inputStream);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        teamName = teaminfo.getProperty("teamName");
-//        contactPerson = teaminfo.getProperty("contactPerson");
-//        teamMembers = teaminfo.getProperty("teamMembers");
-//        teamLogo = teaminfo.getProperty("teamLogo");
-        System.out.println(teaminfo);
-
-    }
+//    public void ReadProperties() throws Exception{
+//        Properties teaminfo = new Properties();
+//        try (final InputStream inputStream = this.getClass().getResourceAsStream("src/main/resources/application.properties")) {
+//            teaminfo.load(inputStream);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+////        teamName = teaminfo.getProperty("teamName");
+////        contactPerson = teaminfo.getProperty("contactPerson");
+////        teamMembers = teaminfo.getProperty("teamMembers");
+////        teamLogo = teaminfo.getProperty("teamLogo");
+//        System.out.println(teaminfo);
+//
+//    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        File file = new File("../../../../../../../../../../resources/LV.png");
