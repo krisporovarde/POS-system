@@ -1,12 +1,13 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -15,8 +16,12 @@ import java.util.Set;
 public class TeamController implements Initializable {
     private String teamName;
     private String contactPerson;
-    private String[] teamMembers;
+    private String teamMembers;
     private String teamLogo;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private TextArea textArea;
 
     public TeamController() throws FileNotFoundException {
         this.teamName = teamName;
@@ -37,30 +42,43 @@ public class TeamController implements Initializable {
             e.printStackTrace();
         }
     }*/
-    public static void main(String args[]) throws FileNotFoundException {
+//    public static void main(String args[]) throws FileNotFoundException {
+//
+//    }
+//    public void ReadInto() throws FileNotFoundException {
+//        TeamController readingProp = new TeamController();
+//        readingProp.ReadProperties();
+//        teamName = readingProp.teamName;
+//        teamMembers = readingProp.teamMembers;
+//        contactPerson = readingProp.contactPerson;
+//        System.out.println(teamName);
+//    }
+//
+    public void ReadProperties() throws Exception{
+        Properties teaminfo = new Properties();
+        try (final InputStream inputStream = this.getClass().getResourceAsStream("src/main/resources/application.properties")) {
+            teaminfo.load(inputStream);
 
-    }
-    public void ReadInto() throws FileNotFoundException {
-        TeamController readingProp = new TeamController();
-        readingProp.ReadProperties();
-        teamName = readingProp.teamName;
-        teamMembers = readingProp.teamMembers;
-        contactPerson = readingProp.contactPerson;
-        System.out.println(teamName);
-    }
-
-    public void ReadProperties() {
-        Properties properties = new Properties();
-        try (final InputStream inputStream = this.getClass().getResourceAsStream("../application.properties")) {
-            properties.load(inputStream);
-            teamName = properties.getProperty(teamName);
-            System.out.println(teamName);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+//        teamName = teaminfo.getProperty("teamName");
+//        contactPerson = teaminfo.getProperty("contactPerson");
+//        teamMembers = teaminfo.getProperty("teamMembers");
+//        teamLogo = teaminfo.getProperty("teamLogo");
+        System.out.println(teaminfo);
 
+    }
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO refresh view after adding new items
+//        File file = new File("../../../../../../../../../../resources/LV.png");
+//        Image image = new Image(file.toURI().toString());
+//        imageView.setImage(image);
+//        try {
+//            ReadProperties();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//        textArea.setText(teamName + "\n" + contactPerson + "\n" + teamMembers + "\n" + teamLogo);
     }
 }
