@@ -66,17 +66,31 @@ public class StockController implements Initializable {
             } catch (NumberFormatException e) {
                 quantity = 1;
             }
-            warehouseTableView.refresh();
+
         } else {
-            long id = Long.parseLong(barCodeWarehouse.getText());
-            String name = nameWarehouse.getText();
-            String desc = "";
-            double price = Double.parseDouble(priceWarehouse.getText());
-            int quantity = Integer.parseInt(quantityWarehouse.getText());
-            StockItem newStockItem = new StockItem(id, name, desc, price, quantity);
-            dao.saveStockItem(newStockItem);
-            warehouseTableView.refresh();
+            if (!barCodeWarehouse.getText().isEmpty() && !nameWarehouse.getText().isEmpty() &&
+                    !priceWarehouse.getText().isEmpty() && !quantityWarehouse.getText().isEmpty()){
+                long id = Long.parseLong(barCodeWarehouse.getText());
+                String name = nameWarehouse.getText();
+                String desc = "";
+                double price = Double.parseDouble(priceWarehouse.getText());
+                int quantity = Integer.parseInt(quantityWarehouse.getText());
+                StockItem newStockItem = new StockItem(id, name, desc, price, quantity);
+                dao.saveStockItem(newStockItem);
+            }
+            else{
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Fill in all the details!");
+                errorAlert.showAndWait();
+            }
+
+
         }
+        warehouseTableView.refresh();
+        barCodeWarehouse.setText("");
+        nameWarehouse.setText("");
+        priceWarehouse.setText("");
+        quantityWarehouse.setText("");
     }
 
     public void deleteItemFromWarehouse() {
@@ -86,9 +100,13 @@ public class StockController implements Initializable {
             warehouseTableView.refresh();
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setHeaderText("Input not valid");
+            errorAlert.setHeaderText("Insert barcode to delete");
             errorAlert.showAndWait();
         }
+        barCodeWarehouse.setText("");
+        nameWarehouse.setText("");
+        priceWarehouse.setText("");
+        quantityWarehouse.setText("");
     }
 
     private StockItem getStockItemByBarcode() {

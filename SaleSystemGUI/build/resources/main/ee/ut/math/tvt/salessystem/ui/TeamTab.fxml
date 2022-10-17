@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -13,11 +14,17 @@
                <top>
                   <HBox prefHeight="271.0" prefWidth="597.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextArea fx:id="textArea" editable="false" prefHeight="258.0" prefWidth="366.0" text="Team name          LG-8-Team6&#10;&#10;Contact                tobias.reiter@ut.ee&#10;&#10;Team members    Tobias Reiter, Tarvi Tamm, Kris Porovarde" />
+                        <TextArea fx:id="textArea" editable="false" prefHeight="258.0" prefWidth="366.0" text="Team name          LG-8-Team6&#10;&#10;Contact                tobias.reiter@ut.ee&#10;&#10;Team members    Tobias Reiter, Tarvi Tamm, Kris Porovarde">
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding></TextArea>
                         <ImageView fx:id="imageView" fitHeight="213.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../LV.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets left="15.0" top="15.0" />
+                           </HBox.margin>
                         </ImageView>
 
                      </children>
