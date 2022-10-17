@@ -12,7 +12,7 @@ Use cases - https://bitbucket.org/tobiasreiter/lg8-team6/wiki/Use%20cases
 Child issues - https://tobias-reiter.atlassian.net/jira/software/projects/LG/boards/1/backlog?selectedIssue=LG-33
 
 ## Homework 3:
-Homework 3: under commits
+Homework 3: https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-3
 
 ## Homework 4:
 <Links to the solution>
