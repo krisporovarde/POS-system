@@ -11,11 +11,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StockController implements Initializable {
+
+    private static final Logger log = LogManager.getLogger(StockController.class);
 
     private final SalesSystemDAO dao;
 
@@ -54,6 +58,7 @@ public class StockController implements Initializable {
     private void refreshStockItems() {
         warehouseTableView.setItems(FXCollections.observableList(dao.findStockItems()));
         warehouseTableView.refresh();
+        log.info("Stock items refreshed");
     }
 
     public void addItemToWarehouse() {
@@ -75,10 +80,13 @@ public class StockController implements Initializable {
                 String desc = "";
                 double price = Double.parseDouble(priceWarehouse.getText());
                 int quantity = Integer.parseInt(quantityWarehouse.getText());
+                log.debug("New stock item id: " +  id + " name: " + name + " price: " + price+ " quantity: " + quantity);
                 StockItem newStockItem = new StockItem(id, name, desc, price, quantity);
                 dao.saveStockItem(newStockItem);
+                log.info("New item saved to stock");
             }
             else{
+                log.error("Missing values");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setHeaderText("Fill in all the details!");
                 errorAlert.showAndWait();

@@ -137,6 +137,7 @@ public class PurchaseController implements Initializable {
         if (stockItem != null) {
             nameField.setText(stockItem.getName());
             priceField.setText(String.valueOf(stockItem.getPrice()));
+            log.debug("Name field: " + nameField + " Price field: " + priceField);
         } else {
             resetProductField();
         }
@@ -149,6 +150,7 @@ public class PurchaseController implements Initializable {
             long code = Long.parseLong(barCodeField.getText());
             return dao.findStockItem(code);
         } catch (NumberFormatException e) {
+            log.error(e);
             return null;
         }
     }
@@ -166,9 +168,11 @@ public class PurchaseController implements Initializable {
                 quantity = Integer.parseInt(quantityField.getText());
             } catch (NumberFormatException e) {
                 quantity = 1;
+                log.error(e);
             }
             shoppingCart.addItem(new SoldItem(stockItem, quantity));
             purchaseTableView.refresh();
+            log.info(stockItem.getName()+ " added to shopping cart");
         }
     }
 

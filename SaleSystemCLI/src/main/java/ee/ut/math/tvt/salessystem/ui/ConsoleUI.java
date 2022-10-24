@@ -52,6 +52,7 @@ public class ConsoleUI {
     }
 
     private void showStock() {
+        log.info("Showing stock");
         List<StockItem> stockItems = dao.findStockItems();
         System.out.println("-------------------------");
         for (StockItem si : stockItems) {
@@ -64,6 +65,7 @@ public class ConsoleUI {
     }
 
     private void showCart() {
+        log.info("Showing cart");
         System.out.println("-------------------------");
         for (SoldItem si : cart.getAll()) {
             System.out.println(si.getName() + " " + si.getPrice() + "Euro (" + si.getQuantity() + " items)");
@@ -115,6 +117,7 @@ public class ConsoleUI {
                 log.error(e.getMessage(), e);
             }
         } else {
+            log.debug("Command: " + command);
             System.out.println("unknown command");
         }
     }

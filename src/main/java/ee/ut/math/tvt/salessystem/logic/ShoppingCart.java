@@ -6,7 +6,10 @@ import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ShoppingCart {
+
+
 
     private final SalesSystemDAO dao;
     private final List<SoldItem> items = new ArrayList<>();

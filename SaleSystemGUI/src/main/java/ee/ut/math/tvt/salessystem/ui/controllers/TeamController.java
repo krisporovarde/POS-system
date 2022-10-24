@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.properties.PropertiesConfiguration;
 
 import java.io.*;
@@ -15,6 +17,8 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 public class TeamController implements Initializable {
+
+    private static final Logger log = LogManager.getLogger(TeamController.class);
     private String teamName;
     private String contactPerson;
     private String teamMembers;
@@ -33,7 +37,9 @@ public class TeamController implements Initializable {
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
+        log.debug(teaminfo);
         return teaminfo;
 
     }
@@ -44,8 +50,10 @@ public class TeamController implements Initializable {
             this.teamName = teaminfo.getProperty("teamName");
             this.contactPerson = teaminfo.getProperty("contactPerson");
             this.teamMembers = teaminfo.getProperty("teamMembers");
+            log.debug("teamName: " + teamName +  " contactPerson: " +  contactPerson + " teamMembers: " + teamMembers);
             //textArea.setText(teamName + "\n" + contactPerson + "\n" + teamMembers);
         } catch (Exception e) {
+            log.error(e);
             throw new RuntimeException(e);
         }
 
