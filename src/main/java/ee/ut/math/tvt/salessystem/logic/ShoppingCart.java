@@ -5,6 +5,7 @@ import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ShoppingCart {
@@ -24,8 +25,22 @@ public class ShoppingCart {
     public void addItem(SoldItem item) {
         // TODO In case such stockItem already exists increase the quantity of the existing stock
         // TODO verify that warehouse items' quantity remains at least zero or throw an exception
-
-        items.add(item);
+        boolean isItemAdded = false;
+        if (items.size() ==0){
+            items.add(item);
+        } else {
+            for (SoldItem soldItem : items) {
+                if (Objects.equals(soldItem.getName(), item.getName())){
+                    soldItem.setQuantity(soldItem.getQuantity()+item.getQuantity());
+                    soldItem.setSum(soldItem.getSum() + item.getSum());
+                    isItemAdded = true;
+                    break;
+                }
+            }
+            if (!isItemAdded){
+                items.add(item);
+            }
+        }
         //log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
     }
 

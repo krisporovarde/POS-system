@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -166,13 +167,28 @@ public class PurchaseController implements Initializable {
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityField.getText());
+                int amountInStock = stockItem.getQuantity();
+                if (quantity <= amountInStock){
+                    if (quantity != amountInStock){stockItem.setQuantity(amountInStock - quantity);
+                    } else {dao.deleteStockItem(stockItem);}
+                    shoppingCart.addItem(new SoldItem(stockItem, quantity));
+                    purchaseTableView.refresh();
+                    log.info(stockItem.getName()+ " added to shopping cart");
+                    resetProductField();
+                } else {
+                    resetProductField();
+                    log.error("Total quantity in stock exceeded");
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setHeaderText("You can't add more items than in stock");
+                    errorAlert.showAndWait();
+                }
             } catch (NumberFormatException e) {
-                quantity = 1;
+                resetProductField();
                 log.error(e);
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Quantity must be a positive number");
+                errorAlert.showAndWait();
             }
-            shoppingCart.addItem(new SoldItem(stockItem, quantity));
-            purchaseTableView.refresh();
-            log.info(stockItem.getName()+ " added to shopping cart");
         }
     }
 

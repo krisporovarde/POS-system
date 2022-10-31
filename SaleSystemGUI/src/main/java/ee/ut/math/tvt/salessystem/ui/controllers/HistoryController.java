@@ -7,6 +7,7 @@ import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
@@ -52,12 +53,9 @@ public class HistoryController implements Initializable {
         showAllOrders();
         orderTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             orderTableView.refresh();
-            if (newSelection != null) {
-                Order order = orderTableView.getSelectionModel().getSelectedItem();
-                soldItemTableView.setItems(FXCollections.observableList(order.getItems()));
-                soldItemTableView.refresh();
-                System.out.println(order);
-            }
+            Order order = orderTableView.getSelectionModel().getSelectedItem();
+            soldItemTableView.setItems(FXCollections.observableList(order.getItems()));
+            soldItemTableView.refresh();
         });
     }
 
@@ -85,20 +83,28 @@ public class HistoryController implements Initializable {
     }
 
     public void showBetweenDatesButtonClicked(){
-        LocalDate start = startDate.getValue();
-        LocalDate end = endDate.getValue();
+        try {
+            LocalDate start = startDate.getValue();
+            LocalDate end = endDate.getValue();
 //        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
 //        LocalDate startFormatted = LocalDate.parse(start, format);
 //        String endFormatted = date.format(end);
-        List<Order> betweenDatesOrders = new ArrayList<Order>();
-        for (Order order : dao.findOrders()) {
-            String date = order.getDate();
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
-            LocalDate dateFormatted = LocalDate.parse(date, format);
-            if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)){
-                betweenDatesOrders.add(order);
+            List<Order> betweenDatesOrders = new ArrayList<Order>();
+            for (Order order : dao.findOrders()) {
+                String date = order.getDate();
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
+                LocalDate dateFormatted = LocalDate.parse(date, format);
+                if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)){
+                    betweenDatesOrders.add(order);
+                }
             }
+            orderTableView.setItems(FXCollections.observableList(betweenDatesOrders));
+        } catch (Exception e){
+            log.error(e);
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Select two dates");
+            errorAlert.showAndWait();
         }
-        orderTableView.setItems(FXCollections.observableList(betweenDatesOrders));
+
     }
 }

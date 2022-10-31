@@ -58,7 +58,11 @@ public class SoldItem {
     }
 
     public double getSum() {
-        return price * ((double) quantity);
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 
     public StockItem getStockItem() {

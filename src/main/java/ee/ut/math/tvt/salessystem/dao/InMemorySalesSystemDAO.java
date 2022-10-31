@@ -24,11 +24,11 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         items.add(new StockItem(4L, "Free Beer", "Student's delight", 0.0, 100));
         List<Order> orders = new ArrayList<Order>();
         List<SoldItem> testSoldItemList = new ArrayList<SoldItem>();
-        StockItem testStockItem = new StockItem(1L, "Lays chips", "Potato chips", 11.0, 5);
+        StockItem testStockItem = new StockItem(1L, "Lays chips", "Potato chips", 11.0, 1);
         testSoldItemList.add(new SoldItem(testStockItem, 1));
         orders.add(new Order("2022/31/10", "18:31:57", 11, testSoldItemList));
         this.stockItemList = items;
-        this.soldItemList = new ArrayList<>();
+        this.soldItemList = new ArrayList<SoldItem>();
         this.orderList = orders;
     }
 
@@ -57,10 +57,14 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/dd/MM");
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String dateFormated = date.format(now);
-        String timeFormated = time.format(now);
+        String dateFormatted = date.format(now);
+        String timeFormatted = time.format(now);
         double soldItemsTotal = calculateSoldItemsTotal();
-        Order order = new Order(dateFormated, timeFormated, soldItemsTotal, soldItemList);
+        List<SoldItem> copyOfSoldItems = new ArrayList<SoldItem>();
+        for (SoldItem soldItem : soldItemList) {
+            copyOfSoldItems.add(soldItem);
+        }
+        Order order = new Order(dateFormatted, timeFormatted, soldItemsTotal, copyOfSoldItems);
         orderList.add(order);
         soldItemList.clear();
     }

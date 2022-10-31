@@ -63,18 +63,20 @@ public class StockController implements Initializable {
 
     public void addItemToWarehouse() {
         StockItem stockItem = getStockItemByBarcode();
-        if (stockItem != null) {
+        if (stockItem != null && inputCheck()) {
             int quantity;
             try {
                 quantity = stockItem.getQuantity() + Integer.parseInt(quantityWarehouse.getText());
                 stockItem.setQuantity(quantity);
             } catch (NumberFormatException e) {
-                quantity = 1;
+                log.error(e);
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Quantity must be a positive number");
+                errorAlert.showAndWait();
             }
 
         } else {
-            if (!barCodeWarehouse.getText().isEmpty() && !nameWarehouse.getText().isEmpty() &&
-                    !priceWarehouse.getText().isEmpty() && !quantityWarehouse.getText().isEmpty()){
+            if (inputCheck()){
                 long id = Long.parseLong(barCodeWarehouse.getText());
                 String name = nameWarehouse.getText();
                 String desc = "";
@@ -85,20 +87,50 @@ public class StockController implements Initializable {
                 dao.saveStockItem(newStockItem);
                 log.info("New item saved to stock");
             }
-            else{
-                log.error("Missing values");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setHeaderText("Fill in all the details!");
-                errorAlert.showAndWait();
-            }
-
-
         }
         warehouseTableView.refresh();
         barCodeWarehouse.setText("");
         nameWarehouse.setText("");
         priceWarehouse.setText("");
         quantityWarehouse.setText("");
+    }
+
+    public boolean inputCheck(){
+        try {
+            if (barCodeWarehouse.getText().isEmpty() || nameWarehouse.getText().isEmpty() ||
+                    priceWarehouse.getText().isEmpty() || quantityWarehouse.getText().isEmpty()){
+                log.error("Input field empty");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Fill in all the fields");
+                errorAlert.showAndWait();
+                return false;
+            } else if (Integer.parseInt(barCodeWarehouse.getText()) < 0 || Integer.parseInt(quantityWarehouse.getText()) < 0 || Integer.parseInt(priceWarehouse.getText()) < 0){
+                log.error("Negative input");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Input can't be negative");
+                errorAlert.showAndWait();
+                return false;
+            } else  {
+                String name = nameWarehouse.getText();
+                char[] chars = name.toCharArray();
+                for (char c : chars) {
+                    if (Character.isDigit(c)){
+                        log.error("Name can't contain numbers");
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setHeaderText("Name can't contain numbers");
+                        errorAlert.showAndWait();
+                        return false;
+                    }
+                }
+                return true;
+            }
+        } catch (Exception e){
+            log.error(e);
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Invalid input");
+            errorAlert.showAndWait();
+            return false;
+        }
     }
 
     public void deleteItemFromWarehouse() {
@@ -122,6 +154,7 @@ public class StockController implements Initializable {
             long code = Long.parseLong(barCodeWarehouse.getText());
             return dao.findStockItem(code);
         } catch (NumberFormatException e) {
+            log.error(e);
             return null;
         }
     }
