@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.dao;
 
+import ee.ut.math.tvt.salessystem.dataobjects.Order;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
@@ -43,4 +44,9 @@ public interface SalesSystemDAO {
     void commitTransaction();
 
     void deleteStockItem(StockItem stockItem);
+
+    void saveOrder();
+
+
+    List<Order> findOrders();
 }

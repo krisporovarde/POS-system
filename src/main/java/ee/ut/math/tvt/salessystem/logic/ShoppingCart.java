@@ -48,6 +48,7 @@ public class ShoppingCart {
             for (SoldItem item : items) {
                 dao.saveSoldItem(item);
             }
+            dao.saveOrder();
             dao.commitTransaction();
             items.clear();
         } catch (Exception e) {

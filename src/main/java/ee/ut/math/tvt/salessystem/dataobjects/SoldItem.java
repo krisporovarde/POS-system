@@ -12,6 +12,8 @@ public class SoldItem {
     private Integer quantity;
     private double price;
 
+    private double sum;
+
     public SoldItem() {
     }
 
@@ -20,6 +22,7 @@ public class SoldItem {
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
+        this.sum = price * ((double) quantity);
     }
 
     public Long getId() {
