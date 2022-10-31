@@ -15,7 +15,7 @@ Child issues - https://tobias-reiter.atlassian.net/jira/software/projects/LG/boa
 Homework 3: https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-3
 
 ## Homework 4:
-<Links to the solution>
+https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-4
 
 ## Homework 5:
 <Links to the solution>
