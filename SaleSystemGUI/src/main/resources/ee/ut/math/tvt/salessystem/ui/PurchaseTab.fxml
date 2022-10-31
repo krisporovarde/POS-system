@@ -40,9 +40,9 @@
               </columnConstraints>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="10000.0" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -55,9 +55,9 @@
               </rowConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
               </rowConstraints>
               <children>
                 <Label text="Bar Code:" />
@@ -97,6 +97,11 @@
                 <TableColumn text="Quantity">
                   <cellValueFactory>
                     <PropertyValueFactory property="quantity" />
+                  </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Sum">
+                  <cellValueFactory>
+                    <PropertyValueFactory property="sum" />
                   </cellValueFactory>
                 </TableColumn>
               </columns>
