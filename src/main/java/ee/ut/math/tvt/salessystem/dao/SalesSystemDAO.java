@@ -45,7 +45,7 @@ public interface SalesSystemDAO {
 
     void deleteStockItem(StockItem stockItem);
 
-    void saveOrder();
+    void saveOrder(Order order);
 
 
     List<Order> findOrders();

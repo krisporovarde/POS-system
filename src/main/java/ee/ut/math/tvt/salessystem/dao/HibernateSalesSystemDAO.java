@@ -83,9 +83,9 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public void saveOrder() {
+    public void saveOrder(Order order) {
         beginTransaction();
-        em.persist(findOrders());
+        em.persist(order);
         em.flush();
         commitTransaction();
     }

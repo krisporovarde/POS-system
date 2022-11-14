@@ -1,11 +1,12 @@
 package ee.ut.math.tvt.salessystem.logic;
 
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.Order;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 public class ShoppingCart {
@@ -63,12 +64,30 @@ public class ShoppingCart {
             for (SoldItem item : items) {
                 dao.saveSoldItem(item);
             }
-            dao.saveOrder();
+
+            DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/dd/MM");
+            DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String dateFormatted = date.format(now);
+            String timeFormatted = time.format(now);
+            double soldItemsTotal = calculateSoldItemsTotal();
+            Set<SoldItem> copyOfSoldItems = new HashSet<SoldItem>(items);
+            Order order = new Order(1L ,dateFormatted, timeFormatted, soldItemsTotal, copyOfSoldItems);
+
+            dao.saveOrder(order);
             dao.commitTransaction();
             items.clear();
         } catch (Exception e) {
             dao.rollbackTransaction();
             throw e;
         }
+    }
+
+    public double calculateSoldItemsTotal(){
+        double total = 0;
+        for (SoldItem soldItem : items) {
+            total += soldItem.getSum();
+        }
+        return total;
     }
 }

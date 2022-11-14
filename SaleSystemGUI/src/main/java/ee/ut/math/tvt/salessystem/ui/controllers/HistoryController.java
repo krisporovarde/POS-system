@@ -92,16 +92,22 @@ public class HistoryController implements Initializable {
 //        String endFormatted = date.format(end);
             List<Order> betweenDatesOrders = new ArrayList<Order>();
 
-            if (start.isBefore(end))
+            if (start.isBefore(end)) {
                 for (Order order : dao.findOrders()) {
                     String date = order.getDate();
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
                     LocalDate dateFormatted = LocalDate.parse(date, format);
-                    if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)){
+                    if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)) {
                         betweenDatesOrders.add(order);
                     }
                 }
-            orderTableView.setItems(FXCollections.observableList(betweenDatesOrders));
+                orderTableView.setItems(FXCollections.observableList(betweenDatesOrders));
+            }
+            else {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setHeaderText("Start date must be before end date");
+                errorAlert.showAndWait();
+            }
         } catch (Exception e){
             log.error(e);
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
