@@ -18,16 +18,16 @@ public class SoldItem {
     @JoinColumn(name = "STOCKITEM_ID", nullable = false)
     private StockItem stockItem;
 
-    @Column(name = "QUANTITY")
+    @Column(name = "SOLDITEM_QUANTITY")
     private Integer quantity;
 
-    @Transient
+    @Column(name = "SOLDITEM_PRICE")
     private double price;
 
-    @Transient
+    @Column(name = "SOLDITEM_SUM")
     private double sum;
 
-    @Transient
+    @Column(name = "SOLDITEM_NAME")
     private String name;
 
     @ManyToMany

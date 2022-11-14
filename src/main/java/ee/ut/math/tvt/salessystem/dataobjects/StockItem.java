@@ -11,13 +11,13 @@ public class StockItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "NAME")
+    @Column(name = "STOCKITEM_NAME")
     private String name;
-    @Column(name = "PRICE")
+    @Column(name = "STOCKITEM_PRICE")
     private double price;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "STOCKITEM_DESCRIPTION")
     private String description;
-    @Column(name = "QUANTITY")
+    @Column(name = "STOCKITEM_QUANTITY")
     private int quantity;
 
     public StockItem() {
