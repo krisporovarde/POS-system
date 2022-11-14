@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -12,16 +13,32 @@ public class SoldItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Transient
+
+    @OneToOne
+    @JoinColumn(name = "STOCKITEM_ID", nullable = false)
     private StockItem stockItem;
-    @Transient
-    private String name;
+
     @Column(name = "QUANTITY")
     private Integer quantity;
+
     @Transient
     private double price;
+
     @Transient
     private double sum;
+
+    @Transient
+    private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "SOLDITEM_TO_ORDER",
+            joinColumns = @JoinColumn(name = "SOLDITEM_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID")
+    )
+    private Set<Order> Orders;
+
+
 
     public SoldItem() {
     }

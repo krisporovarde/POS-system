@@ -2,10 +2,13 @@ package ee.ut.math.tvt.salessystem.dao;
 import ee.ut.math.tvt.salessystem.dataobjects.Order;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.transaction.Transaction;
 import java.util.List;
 
 public class HibernateSalesSystemDAO implements SalesSystemDAO {
@@ -24,22 +27,32 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public List<StockItem> findStockItems() {
-        return null;
+        return em.createQuery("SELECT StockItem FROM StockItem", StockItem.class).getResultList();
     }
 
     @Override
     public StockItem findStockItem(long id) {
-        return null;
+        String hql = "SELECT StockItem FROM StockItem E WHERE StockItem.id = ?1";
+        Query query = em.createQuery(hql);
+        query.setParameter(1, "%"+id+"%");
+        List results = query.getResultList();
+        return (StockItem) results;
     }
 
     @Override
     public void saveStockItem(StockItem stockItem) {
-
+        beginTransaction();
+        em.persist(stockItem);
+        em.flush();
+        commitTransaction();
     }
 
     @Override
     public void saveSoldItem(SoldItem item) {
-
+        beginTransaction();
+        em.persist(item);
+        em.flush();
+        commitTransaction();
     }
 
     @Override
@@ -51,22 +64,35 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
         em.getTransaction (). rollback ();
     }
     @Override
-    public void commitTransaction () {
+    public void commitTransaction() {
         em.getTransaction (). commit ();
     }
 
     @Override
     public void deleteStockItem(StockItem stockItem) {
+        beginTransaction();
 
+        em.persist(stockItem);
+        em.flush();
+        em.remove(stockItem);
+
+        commitTransaction();
+
+        em.close();
+        emf.close();
     }
 
     @Override
     public void saveOrder() {
-
+        beginTransaction();
+        em.persist(findOrders());
+        em.flush();
+        commitTransaction();
     }
 
     @Override
     public List<Order> findOrders() {
-        return null;
+        return em.createQuery("SELECT Order FROM Order", Order.class).getResultList();
+
     }
 }

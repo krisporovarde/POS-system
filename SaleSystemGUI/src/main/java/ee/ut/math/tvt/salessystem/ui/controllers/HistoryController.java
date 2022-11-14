@@ -86,18 +86,21 @@ public class HistoryController implements Initializable {
         try {
             LocalDate start = startDate.getValue();
             LocalDate end = endDate.getValue();
-//        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
+
+            //        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
 //        LocalDate startFormatted = LocalDate.parse(start, format);
 //        String endFormatted = date.format(end);
             List<Order> betweenDatesOrders = new ArrayList<Order>();
-            for (Order order : dao.findOrders()) {
-                String date = order.getDate();
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
-                LocalDate dateFormatted = LocalDate.parse(date, format);
-                if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)){
-                    betweenDatesOrders.add(order);
+
+            if (start.isBefore(end))
+                for (Order order : dao.findOrders()) {
+                    String date = order.getDate();
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
+                    LocalDate dateFormatted = LocalDate.parse(date, format);
+                    if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)){
+                        betweenDatesOrders.add(order);
+                    }
                 }
-            }
             orderTableView.setItems(FXCollections.observableList(betweenDatesOrders));
         } catch (Exception e){
             log.error(e);
