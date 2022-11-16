@@ -1,12 +1,16 @@
+ee/ut/math/tvt/salessystem/dao/InMemorySalesSystemDAO.java
+ ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO
 ee/ut/math/tvt/salessystem/dao/HibernateSalesSystemDAO.java
  ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO
 ee/ut/math/tvt/salessystem/dataobjects/Order.java
  ee.ut.math.tvt.salessystem.dataobjects.Order
-ee/ut/math/tvt/salessystem/dataobjects/Helper.java
- Helper
+ee/ut/math/tvt/salessystem/SalesSystemException.java
+ ee.ut.math.tvt.salessystem.SalesSystemException
 ee/ut/math/tvt/salessystem/dao/SalesSystemDAO.java
  ee.ut.math.tvt.salessystem.dao.SalesSystemDAO
 ee/ut/math/tvt/salessystem/dataobjects/StockItem.java
  ee.ut.math.tvt.salessystem.dataobjects.StockItem
 ee/ut/math/tvt/salessystem/dataobjects/SoldItem.java
  ee.ut.math.tvt.salessystem.dataobjects.SoldItem
+ee/ut/math/tvt/salessystem/logic/ShoppingCart.java
+ ee.ut.math.tvt.salessystem.logic.ShoppingCart
