@@ -15,8 +15,8 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
     public HibernateSalesSystemDAO () {
-// if you get ConnectException / JDBCConnectionException then you
-// probably forgot to start the database before starting the application
+        // if you get ConnectException / JDBCConnectionException then you
+        // probably forgot to start the database before starting the application
         emf = Persistence.createEntityManagerFactory ("pos");
         em = emf.createEntityManager ();
     }
@@ -26,17 +26,11 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public List<StockItem> findStockItems() {
-        return em.createQuery("SELECT StockItem FROM StockItem", StockItem.class).getResultList();
-    }
-
-    @Override
-    public StockItem findStockItem(long id) {
-        String hql = "SELECT StockItem FROM StockItem E WHERE StockItem.id = ?1";
-        Query query = em.createQuery(hql);
-        query.setParameter(1, "%"+id+"%");
-        List results = query.getResultList();
-        return (StockItem) results;
+    public void saveOrder(Order order) {
+        beginTransaction();
+        em.persist(order);
+        em.flush();
+        commitTransaction();
     }
 
     @Override
@@ -83,16 +77,21 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public void saveOrder(Order order) {
-        beginTransaction();
-        em.persist(order);
-        em.flush();
-        commitTransaction();
+    public List<Order> findOrders() {
+        return em.createQuery("SELECT Order FROM Order", Order.class).getResultList();
     }
 
     @Override
-    public List<Order> findOrders() {
-        return em.createQuery("SELECT Order FROM Order", Order.class).getResultList();
+    public List<StockItem> findStockItems() {
+        return em.createQuery("SELECT StockItem FROM StockItem", StockItem.class).getResultList();
+    }
 
+    @Override
+    public StockItem findStockItem(long id) {
+        String hql = "SELECT StockItem FROM StockItem E WHERE StockItem.id = ?1";
+        Query query = em.createQuery(hql);
+        query.setParameter(1, "%"+id+"%");
+        List results = query.getResultList();
+        return (StockItem) results;
     }
 }

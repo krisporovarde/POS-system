@@ -47,6 +47,5 @@ public interface SalesSystemDAO {
 
     void saveOrder(Order order);
 
-
     List<Order> findOrders();
 }

@@ -21,7 +21,7 @@ https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-4
 https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-5
 
 ## Homework 6:
-<Links to the solution>
+https://docs.google.com/spreadsheets/d/1lV9x_d79MUqvrnbBCE1nzgF4APyLXfmlmK4FvMtNJd4/edit?usp=sharing
 
 ## Homework 7:
 <Links to the solution>

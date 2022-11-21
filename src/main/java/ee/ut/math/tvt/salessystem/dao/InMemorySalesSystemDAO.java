@@ -13,8 +13,8 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     private final List<StockItem> stockItemList;
     private final List<SoldItem> soldItemList;
-
     private final List<Order> orderList;
+
 
     public InMemorySalesSystemDAO() {
         List<StockItem> items = new ArrayList<StockItem>();
@@ -33,36 +33,12 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public List<StockItem> findStockItems() {
-        return stockItemList;
-    }
-
-    @Override
-    public StockItem findStockItem(long id) {
-        for (StockItem item : stockItemList) {
-            if (item.getId() == id)
-                return item;
-        }
-        return null;
-    }
-
-    @Override
     public void saveSoldItem(SoldItem item) {
         soldItemList.add(item);
     }
 
-    public List<Order> findOrders(){return orderList;}
-
     public void saveOrder(Order order){
         orderList.add(order);
-    }
-
-    public double calculateSoldItemsTotal(){
-        double total = 0;
-        for (SoldItem soldItem : soldItemList) {
-            total += soldItem.getSum();
-        }
-        return total;
     }
 
     @Override
@@ -84,5 +60,23 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void commitTransaction() {
+    }
+
+    @Override
+    public List<StockItem> findStockItems() {
+        return stockItemList;
+    }
+
+    @Override
+    public StockItem findStockItem(long id) {
+        for (StockItem item : stockItemList) {
+            if (item.getId() == id)
+                return item;
+        }
+        return null;
+    }
+
+    public List<Order> findOrders(){
+        return orderList;
     }
 }
