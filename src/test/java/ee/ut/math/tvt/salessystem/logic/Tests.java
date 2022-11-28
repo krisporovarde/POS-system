@@ -1,11 +1,18 @@
 package ee.ut.math.tvt.salessystem.logic;
 
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import org.junit.jupiter.api.Test;
 
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -147,17 +154,15 @@ class Tests{
                 assertEquals("Exception Message", exception.getMessage());
             }
         }
-    }/*
+    }
     @Test
     void testSubmittingCurrentPurchaseDecreasesStockItemQuantity(){
         InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
         ShoppingCart shoppingCart = new ShoppingCart(dao);
         StockItem cheese = new StockItem(11L,"Cheese", "", 10, 10);
         StockItem ham = new StockItem(22L,"Ham", "", 20, 10);
-        StockItem milk = new StockItem(33L,"Milk", "", 30, 10);
         dao.saveStockItem(cheese);
         dao.saveStockItem(ham);
-        dao.saveStockItem(milk);
         SoldItem Cheese = new SoldItem();
         Cheese.setId(11L);
         Cheese.setName("Cheese");
@@ -166,22 +171,94 @@ class Tests{
         Ham.setId(22L);
         Ham.setName("Ham");
         Ham.setQuantity(5);
-        SoldItem Milk = new SoldItem();
-        Milk.setId(33L);
-        Milk.setName("Milk");
-        Milk.setQuantity(5);
         shoppingCart.addItem(Cheese);
         shoppingCart.addItem(Ham);
-        shoppingCart.addItem(Milk);
         shoppingCart.submitCurrentPurchase();
-        StockItem item1 = dao.findStockItem(11L);
+        StockItem item = dao.findStockItem(11L);
         StockItem item2 = dao.findStockItem(22L);
-        StockItem item3 = dao.findStockItem(33L);
-        System.out.println(item1.getQuantity());
-        System.out.println(item2);
-        System.out.println(item3);
-        assertEquals(5,item1.getQuantity());
+
+        assertEquals(5,item.getQuantity());
         assertEquals(5,item2.getQuantity());
-        assertEquals(5,item3.getQuantity());
-    }*/
+    }
+    @Test
+    void testSubmittingCurrentPurchaseBeginsAndCommitsTransaction() {
+
+        InMemorySalesSystemDAO dao =  mock(InMemorySalesSystemDAO.class);
+        ShoppingCart shoppingCart = new ShoppingCart(dao);
+        shoppingCart.submitCurrentPurchase();
+        verify(dao, times(1)).beginTransaction();
+        verify(dao, times(1)).commitTransaction();
+    }
+
+    @Test
+    void testSubmittingCurrentOrderCreatesHistoryItem(){
+        InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
+        ShoppingCart shoppingCart = new ShoppingCart(dao);
+        SoldItem item1 = new SoldItem();
+        item1.setName("Chicken");
+        item1.setQuantity(3);
+        item1.setPrice(10);
+        SoldItem item2 = new SoldItem();
+        item2.setName("Cow");
+        item2.setQuantity(3);
+        item2.setPrice(10);
+        shoppingCart.addItem(item1);
+        shoppingCart.addItem(item2);
+        shoppingCart.submitCurrentPurchase();
+        List<Purchase> orders = dao.findPurchases();
+        double totalPrice = orders.get(0).getTotal();
+        assertEquals(60.0, totalPrice);
+    }
+    @Test
+    void testSubmittingCurrentOrderSavesCorrectTime(){
+        InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
+        ShoppingCart shoppingCart = new ShoppingCart(dao);
+        SoldItem item1 = new SoldItem();
+        item1.setName("Rice");
+        item1.setQuantity(1);
+        item1.setPrice(5);
+        shoppingCart.addItem(item1);
+        shoppingCart.submitCurrentPurchase();
+        List<Purchase> orders = dao.findPurchases();
+        String time = orders.get(0).getTime();
+        double timeBeginning = Double.parseDouble(time.substring(6));
+        String after = LocalTime.now().toString();
+        double timeEnd = Double.parseDouble(after.substring(6));
+        boolean quickEnough = false;
+        if (timeEnd-timeBeginning < 1) quickEnough = true;
+        assertTrue(quickEnough);
+    }
+
+    @Test
+    void testCancellingOrder(){
+        InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
+        ShoppingCart shoppingCart = new ShoppingCart(dao);
+        SoldItem item1 = new SoldItem();
+        item1.setName("Pork");
+        shoppingCart.addItem(item1);
+        shoppingCart.cancelCurrentPurchase();
+        SoldItem item2 = new SoldItem();
+        item2.setName("Egg");
+        item2.setQuantity(2);
+        item2.setPrice(10);
+        shoppingCart.addItem(item2);
+        shoppingCart.submitCurrentPurchase();
+        List<Purchase> orders = dao.findPurchases();
+        double cost = orders.get(0).getTotal();
+        assertEquals(20.0, cost);
+    }
+
+    @Test
+    void testCancellingOrderQuantitiesUnchanged(){
+        InMemorySalesSystemDAO dao = new InMemorySalesSystemDAO();
+        ShoppingCart shoppingCart = new ShoppingCart(dao);
+        StockItem item1 = new StockItem(11L, "Pork", "", 10,10);
+        dao.saveStockItem(item1);
+        SoldItem item2 = new SoldItem();
+        item2.setName("Pork");
+        shoppingCart.addItem(item2);
+        shoppingCart.cancelCurrentPurchase();
+        StockItem pork = dao.findStockItem(11L);
+        assertEquals(10, pork.getQuantity());
+    }
 }

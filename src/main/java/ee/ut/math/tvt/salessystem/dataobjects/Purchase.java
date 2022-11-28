@@ -49,6 +49,9 @@ public class Purchase {
     }
 
     public double getTotal() {
+        for (SoldItem item : items) {
+            total += item.getPrice()*item.getQuantity();
+        }
         return total;
     }
 

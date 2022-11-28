@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.logic;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
+import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -60,9 +61,16 @@ public class ShoppingCart {
         // but when you start using hibernate in lab5, then it will become relevant.
         // what is a transaction? https://stackoverflow.com/q/974596
         dao.beginTransaction();
+        List<StockItem> itemsWarehouse = dao.findStockItems();
         try {
             for (SoldItem item : items) {
+                for (StockItem stockItem : itemsWarehouse) {
+                    if (Objects.equals(stockItem.getName(), item.getName())){
+                        stockItem.setQuantity(stockItem.getQuantity()-item.getQuantity());
+                    }
+                }
                 dao.saveSoldItem(item);
+
             }
 
             DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/dd/MM");
