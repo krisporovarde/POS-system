@@ -1,6 +1,6 @@
 package ee.ut.math.tvt.salessystem.dao;
 
-import ee.ut.math.tvt.salessystem.dataobjects.Order;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
@@ -45,7 +45,7 @@ public interface SalesSystemDAO {
 
     void deleteStockItem(StockItem stockItem);
 
-    void saveOrder(Order order);
+    void savePurchase(Purchase order);
 
-    List<Order> findOrders();
+    List<Purchase> findPurchases();
 }

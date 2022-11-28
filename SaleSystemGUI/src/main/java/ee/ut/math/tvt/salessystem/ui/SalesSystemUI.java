@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui;
 import ee.ut.math.tvt.salessystem.dao.HibernateSalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
 import ee.ut.math.tvt.salessystem.dao.InMemorySalesSystemDAO;
+import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import ee.ut.math.tvt.salessystem.ui.controllers.HistoryController;
 import ee.ut.math.tvt.salessystem.ui.controllers.PurchaseController;
 import ee.ut.math.tvt.salessystem.ui.controllers.StockController;
@@ -24,6 +25,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Graphical user interface of the sales system.
@@ -37,6 +40,7 @@ public class SalesSystemUI extends Application {
 
     public SalesSystemUI() {
         dao = new HibernateSalesSystemDAO();
+
         shoppingCart = new ShoppingCart(dao);
     }
 
@@ -66,7 +70,7 @@ public class SalesSystemUI extends Application {
 
         Group root = new Group();
         Scene scene = new Scene(root, 600, 500, Color.WHITE);
-        scene.getStylesheets().add(getClass().getResource("DefaultTheme.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("DefaultTheme.css")).toExternalForm());
 
         BorderPane borderPane = new BorderPane();
         borderPane.prefHeightProperty().bind(scene.heightProperty());
@@ -79,16 +83,23 @@ public class SalesSystemUI extends Application {
         primaryStage.show();
 
         log.info("Salesystem GUI started");
+
     }
 
     private Node loadControls(String fxml, Initializable controller) throws IOException {
-        URL resource = getClass().getResource(fxml);
-        if (resource == null)
-            throw new IllegalArgumentException(fxml + " not found");
+        try {
+            URL resource = getClass().getResource(fxml);
+            if (resource == null)
+                throw new IllegalArgumentException(fxml + " not found");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(resource);
-        fxmlLoader.setController(controller);
-        return fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(resource);
+            fxmlLoader.setController(controller);
+            return fxmlLoader.load();
+        } catch (IOException e) {
+            log.error(e);
+            return null;
+        }
+
     }
     //Merge conflict2
     // ted123

@@ -1,7 +1,7 @@
 package ee.ut.math.tvt.salessystem.logic;
 
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
-import ee.ut.math.tvt.salessystem.dataobjects.Order;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 
 import java.time.LocalDateTime;
@@ -72,9 +72,9 @@ public class ShoppingCart {
             String timeFormatted = time.format(now);
             double soldItemsTotal = calculateSoldItemsTotal();
             Set<SoldItem> copyOfSoldItems = new HashSet<SoldItem>(items);
-            Order order = new Order(1L ,dateFormatted, timeFormatted, soldItemsTotal, copyOfSoldItems);
+            Purchase purchase = new Purchase(1L ,dateFormatted, timeFormatted, soldItemsTotal, copyOfSoldItems);
 
-            dao.saveOrder(order);
+            dao.savePurchase(purchase);
             dao.commitTransaction();
             items.clear();
         } catch (Exception e) {

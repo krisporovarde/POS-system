@@ -1,5 +1,5 @@
 package ee.ut.math.tvt.salessystem.dao;
-import ee.ut.math.tvt.salessystem.dataobjects.Order;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import org.hibernate.Session;
@@ -26,9 +26,9 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public void saveOrder(Order order) {
+    public void savePurchase(Purchase purchase) {
         beginTransaction();
-        em.persist(order);
+        em.persist(purchase);
         em.flush();
         commitTransaction();
     }
@@ -77,8 +77,8 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
     }
 
     @Override
-    public List<Order> findOrders() {
-        return em.createQuery("SELECT Order FROM Order", Order.class).getResultList();
+    public List<Purchase> findPurchases() {
+        return em.createQuery("SELECT Purchase FROM Purchase ", Purchase.class).getResultList();
     }
 
     @Override

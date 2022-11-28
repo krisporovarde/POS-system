@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "ORDER")
-public class Order {
+@Table(name = "PURCHASE")
+public class Purchase {
 
 
     @Id
@@ -18,15 +18,19 @@ public class Order {
     private String time;
     @Column(name = "TOTAL")
     private double total;
-    @ManyToMany(mappedBy = "Orders" )
+    @ManyToMany(mappedBy = "Purchases" )
     private Set<SoldItem> items;
 
-    public Order(Long id, String date, String time, double total, Set<SoldItem> items) {
+    public Purchase(Long id, String date, String time, double total, Set<SoldItem> items) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.total =total;
         this.items = items;
+    }
+
+    public Purchase() {
+
     }
 
 

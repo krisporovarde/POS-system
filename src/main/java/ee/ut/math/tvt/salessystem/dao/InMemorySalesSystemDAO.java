@@ -1,6 +1,6 @@
 package ee.ut.math.tvt.salessystem.dao;
 
-import ee.ut.math.tvt.salessystem.dataobjects.Order;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
@@ -13,7 +13,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 
     private final List<StockItem> stockItemList;
     private final List<SoldItem> soldItemList;
-    private final List<Order> orderList;
+    private final List<Purchase> purhcaseList;
 
 
     public InMemorySalesSystemDAO() {
@@ -29,7 +29,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
 //        orders.add(new Order(1L,"2022/31/10", "18:31:57", 11, testSoldItemList));
         this.stockItemList = items;
         this.soldItemList = new ArrayList<SoldItem>();
-        this.orderList = new ArrayList<Order>();
+        this.purhcaseList = new ArrayList<Purchase>();
     }
 
     @Override
@@ -37,8 +37,8 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         soldItemList.add(item);
     }
 
-    public void saveOrder(Order order){
-        orderList.add(order);
+    public void savePurchase(Purchase purchase){
+        purhcaseList.add(purchase);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class InMemorySalesSystemDAO implements SalesSystemDAO {
         return null;
     }
 
-    public List<Order> findOrders(){
-        return orderList;
+    public List<Purchase> findPurchases(){
+        return purhcaseList;
     }
 }

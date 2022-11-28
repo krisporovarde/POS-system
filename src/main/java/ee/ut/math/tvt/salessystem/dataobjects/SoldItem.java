@@ -36,7 +36,7 @@ public class SoldItem {
             joinColumns = @JoinColumn(name = "SOLDITEM_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID")
     )
-    private Set<Order> Orders;
+    private Set<Purchase> Purchases;
 
 
 

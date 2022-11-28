@@ -1,7 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.controllers;
 
 import ee.ut.math.tvt.salessystem.dao.SalesSystemDAO;
-import ee.ut.math.tvt.salessystem.dataobjects.Order;
+import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 import javafx.collections.FXCollections;
@@ -36,7 +36,7 @@ public class HistoryController implements Initializable {
     @FXML
     private Button showAll;
     @FXML
-    private TableView<Order> orderTableView;
+    private TableView<Purchase> orderTableView;
     @FXML
     private TableView<SoldItem> soldItemTableView;
     @FXML
@@ -53,14 +53,14 @@ public class HistoryController implements Initializable {
         showAllOrders();
         orderTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             orderTableView.refresh();
-            Order order = orderTableView.getSelectionModel().getSelectedItem();
-            soldItemTableView.setItems(FXCollections.observableList(order.getItems()));
+            Purchase purchase = orderTableView.getSelectionModel().getSelectedItem();
+            soldItemTableView.setItems(FXCollections.observableList(purchase.getItems()));
             soldItemTableView.refresh();
         });
     }
 
     private void showAllOrders(){
-        orderTableView.setItems(FXCollections.observableList(dao.findOrders()));
+        orderTableView.setItems(FXCollections.observableList(dao.findPurchases()));
         orderTableView.refresh();
     }
     @FXML
@@ -69,12 +69,12 @@ public class HistoryController implements Initializable {
     }
 
     public void showLast10ButtonClicked(){
-        List<Order> orders = dao.findOrders();
+        List<Purchase> orders = dao.findPurchases();
         if (orders.size() <= 10){
             orderTableView.setItems(FXCollections.observableList(orders));
         }
         else {
-            List<Order> last10orders = new ArrayList<Order>();
+            List<Purchase> last10orders = new ArrayList<Purchase>();
             for (int i = orders.size()-1; i > orders.size()-11; i--) {
                 last10orders.add(orders.get(i));
             }
@@ -90,10 +90,10 @@ public class HistoryController implements Initializable {
             //        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
 //        LocalDate startFormatted = LocalDate.parse(start, format);
 //        String endFormatted = date.format(end);
-            List<Order> betweenDatesOrders = new ArrayList<Order>();
+            List<Purchase> betweenDatesOrders = new ArrayList<Purchase>();
 
             if (start.isBefore(end)) {
-                for (Order order : dao.findOrders()) {
+                for (Purchase order : dao.findPurchases()) {
                     String date = order.getDate();
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
                     LocalDate dateFormatted = LocalDate.parse(date, format);
