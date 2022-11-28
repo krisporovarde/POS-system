@@ -32,7 +32,7 @@ public class HistoryController implements Initializable {
     @FXML
     private Button showBetweenDates;
     @FXML
-    private Button showLast10;
+    private Button showLast10days;
     @FXML
     private Button showAll;
     @FXML
@@ -68,7 +68,7 @@ public class HistoryController implements Initializable {
         showAllOrders();
     }
 
-    public void showLast10ButtonClicked(){
+    public void showLast10daysButtonClicked(){
         List<Purchase> orders = dao.findPurchases();
         if (orders.size() <= 10){
             orderTableView.setItems(FXCollections.observableList(orders));

@@ -92,7 +92,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="showBetweenDates" mnemonicParsing="false" onMouseClicked="#showBetweenDatesButtonClicked" prefHeight="25.0" prefWidth="147.0" text="Show between dates" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
-            <Button fx:id="showLast10" alignment="BOTTOM_CENTER" mnemonicParsing="false" onMouseClicked="#showLast10ButtonClicked" prefHeight="25.0" prefWidth="147.0" text="Show last 10" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Button fx:id="showLast10days" alignment="BOTTOM_CENTER" mnemonicParsing="false" onMouseClicked="#showLast10daysButtonClicked" prefHeight="25.0" prefWidth="147.0" text="Show last 10" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <Button fx:id="showAll" mnemonicParsing="false" onMouseClicked="#showAllOrdersButtonClicked" prefHeight="25.0" prefWidth="147.0" text="Show all" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <DatePicker fx:id="startDate" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
