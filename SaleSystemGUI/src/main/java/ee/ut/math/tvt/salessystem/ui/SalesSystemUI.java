@@ -39,7 +39,7 @@ public class SalesSystemUI extends Application {
     private final ShoppingCart shoppingCart;
 
     public SalesSystemUI() {
-        dao = new HibernateSalesSystemDAO();
+        dao = new InMemorySalesSystemDAO();
 
         shoppingCart = new ShoppingCart(dao);
     }
