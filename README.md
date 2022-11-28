@@ -22,7 +22,8 @@ https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-5
 
 ## Homework 6:
 Test plan: https://docs.google.com/spreadsheets/d/1lV9x_d79MUqvrnbBCE1nzgF4APyLXfmlmK4FvMtNJd4/edit?usp=sharing
-Test cases: https://docs.google.com/spreadsheets/d/1lV9x_d79MUqvrnbBCE1nzgF4APyLXfmlmK4FvMtNJd4/edit?usp=sharing (second sheet)
+<br>Test cases: https://docs.google.com/spreadsheets/d/1lV9x_d79MUqvrnbBCE1nzgF4APyLXfmlmK4FvMtNJd4/edit?usp=sharing (second sheet)
+<br>https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-6
 
 ## Homework 7:
 <Links to the solution>
