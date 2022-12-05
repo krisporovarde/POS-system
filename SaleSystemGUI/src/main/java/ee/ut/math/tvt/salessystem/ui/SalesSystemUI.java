@@ -44,6 +44,10 @@ public class SalesSystemUI extends Application {
         shoppingCart = new ShoppingCart(dao);
     }
 
+    public static void main (String [] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         log.info("javafx version: " + System.getProperty("javafx.runtime.version"));

@@ -31,7 +31,7 @@ public class ConsoleUI {
     }
 
     public static void main(String[] args) throws Exception {
-        SalesSystemDAO dao = new HibernateSalesSystemDAO();
+        SalesSystemDAO dao = new InMemorySalesSystemDAO();
         ConsoleUI console = new ConsoleUI(dao);
         console.run();
     }
