@@ -1,0 +1,73 @@
+Manifest-Version: 1.0
+Implementation-Title: Gradle Quickstart
+Implementation-Version: 1.0
+Main-Class: ee.ut.math.tvt.salessystem.ui.ConsoleUI
+Class-Path: file:/C:/Users/poro/Desktop/lg8-team6/build/libs/lg8-team6-1
+ .0.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/org.apach
+ e.logging.log4j/log4j-core/2.17.1/779f60f3844dadc3ef597976fcb1e5127b1f3
+ 43d/log4j-core-2.17.1.jar file:/C:/Users/poro/.gradle/caches/modules-2/
+ files-2.1/org.apache.logging.log4j/log4j-api/2.17.1/d771af8e336e372fb53
+ 99c99edabe0919aeaf5b2/log4j-api-2.17.1.jar file:/C:/Users/poro/.gradle/
+ caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.6.2
+ /f2a64a42cf73077062c2386db0598062b7480d91/junit-jupiter-params-5.6.2.ja
+ r file:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/org.junit.jupi
+ ter/junit-jupiter-engine/5.6.2/c0833bd6de29dd77f8d071025b97b8b434308cd3
+ /junit-jupiter-engine-5.6.2.jar file:/C:/Users/poro/.gradle/caches/modu
+ les-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.6.2/c9ba885abfe97
+ 5cda123bf6f8f0a69a1b46956d0/junit-jupiter-api-5.6.2.jar file:/C:/Users/
+ poro/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platfo
+ rm-engine/1.6.2/1752cad2579e20c2b224602fe846fc660fb35805/junit-platform
+ -engine-1.6.2.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-2.
+ 1/org.junit.platform/junit-platform-commons/1.6.2/7644a14b329e76b5fe487
+ 628b50fb5eab6ba7d26/junit-platform-commons-1.6.2.jar file:/C:/Users/por
+ o/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.
+ 6.2/b5c481685b6a8ca91c0d46f28f886a444354daa5/junit-jupiter-5.6.2.jar fi
+ le:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/org.hsqldb/hsqldb/
+ 2.3.4/5564c057c826418f8e32de5815a14aee91781b37/hsqldb-2.3.4.jar file:/C
+ :/Users/poro/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate
+ -entitymanager/5.2.1.Final/5c11f69632bf6cc1d4dfbe6b67f72b0c8073ad5f/hib
+ ernate-entitymanager-5.2.1.Final.jar file:/C:/Users/poro/.gradle/caches
+ /modules-2/files-2.1/org.hibernate/hibernate-java8/5.2.1.Final/dcc6a368
+ 14ccd4a40ed0df575681dfb2d6848701/hibernate-java8-5.2.1.Final.jar file:/
+ C:/Users/poro/.gradle/caches/modules-2/files-2.1/javax.xml.bind/jaxb-ap
+ i/2.2.11/32274d4244967ff43e7a5d967743d94ed3d2aea7/jaxb-api-2.2.11.jar f
+ ile:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/org.hibernate/hib
+ ernate-core/5.2.1.Final/948e24fcce6847110ee5092ea11dbf879bdab704/hibern
+ ate-core-5.2.1.Final.jar file:/C:/Users/poro/.gradle/caches/modules-2/f
+ iles-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final
+ /71e1cff3fcb20d3b3af4f3363c3ddb24d33c6879/hibernate-commons-annotations
+ -5.0.1.Final.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-2.1
+ /org.jboss.logging/jboss-logging/3.3.0.Final/3616bb87707910296e2c195dc0
+ 16287080bba5af/jboss-logging-3.3.0.Final.jar file:/C:/Users/poro/.gradl
+ e/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfd
+ f43894b9065a8f94/dom4j-1.6.1.jar file:/C:/Users/poro/.gradle/caches/mod
+ ules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/
+ 1.0.0.Final/5e731d961297e5a07290bfaf3db1fbc8bbbf405a/hibernate-jpa-2.1-
+ api-1.0.0.Final.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-
+ 2.1/org.javassist/javassist/3.20.0-GA/a9cbcdfb7e9f86fbc74d3afae65f2248b
+ fbf82a0/javassist-3.20.0-GA.jar file:/C:/Users/poro/.gradle/caches/modu
+ les-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/a
+ abab3165b8ea936b9360abbf448459c0d04a5a4/geronimo-jta_1.1_spec-1.1.1.jar
+  file:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/org.apiguardian
+ /apiguardian-api/1.1.0/fc9dff4bb36d627bdc553de77e1f17efd790876c/apiguar
+ dian-api-1.1.0.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-2
+ .1/org.opentest4j/opentest4j/1.2.0/28c11eb91f9b6d8e200631d46e20a7f407f2
+ a046/opentest4j-1.2.0.jar file:/C:/Users/poro/.gradle/caches/modules-2/
+ files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/an
+ tlr-2.7.7.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-2.1/or
+ g.jboss/jandex/2.0.0.Final/3e899258936f94649c777193e1be846387ed54b3/jan
+ dex-2.0.0.Final.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-
+ 2.1/com.fasterxml/classmate/1.3.0/183407ff982e9375f1a1c4a51ed0a9307c598
+ fc7/classmate-1.3.0.jar file:/C:/Users/poro/.gradle/caches/modules-2/fi
+ les-2.1/javax.enterprise/cdi-api/1.1-PFD/9ec46d69b097daec421e757ce49c07
+ c76a025e18/cdi-api-1.1-PFD.jar file:/C:/Users/poro/.gradle/caches/modul
+ es-2/files-2.1/javax.el/el-api/2.2/42971279cc8ba864462580c7fc2199fd5715
+ ee7f/el-api-2.2.jar file:/C:/Users/poro/.gradle/caches/modules-2/files-
+ 2.1/org.jboss.spec.javax.interceptor/jboss-interceptors-api_1.1_spec/1.
+ 0.0.Beta1/8cb388fd3b4912373da7a18e199bb55aa52aa5c1/jboss-interceptors-a
+ pi_1.1_spec-1.0.0.Beta1.jar file:/C:/Users/poro/.gradle/caches/modules-
+ 2/files-2.1/javax.annotation/jsr250-api/1.0/5025422767732a1ab45d93abfea
+ 846513d742dcf/jsr250-api-1.0.jar file:/C:/Users/poro/.gradle/caches/mod
+ ules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a23
+ 1b76c915872d38/javax.inject-1.jar
+

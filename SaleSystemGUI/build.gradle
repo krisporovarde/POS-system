@@ -12,18 +12,17 @@ version = '1.0'
 sourceCompatibility = 11
 targetCompatibility = 11
 
+
 javafx {
     version >= '12.0.1'
     modules = [ 'javafx.controls', 'javafx.fxml']
 }
-
+mainClassName = 'ee.ut.math.tvt.salessystem.ui.Launcher'
 dependencies {
     compile project(':')
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.1'
 }
-
-mainClassName = 'ee.ut.math.tvt.salessystem.ui.Launcher'
 
 jar {
 	doFirst {
