@@ -26,6 +26,6 @@ Test plan: https://docs.google.com/spreadsheets/d/1lV9x_d79MUqvrnbBCE1nzgF4APyLX
 <br>https://bitbucket.org/tobiasreiter/lg8-team6/commits/tag/homework-6
 
 ## Homework 7:
-<Links to the solution>
+https://docs.google.com/document/d/1zMIYu7iNu1Ks5a37SHot1IPojHZUMvYRU0FMcgg0Eh0/edit#
 
 We encourage you to use [markdown syntax](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)
