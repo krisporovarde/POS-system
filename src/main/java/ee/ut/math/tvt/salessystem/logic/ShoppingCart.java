@@ -5,6 +5,7 @@ import ee.ut.math.tvt.salessystem.dataobjects.Purchase;
 import ee.ut.math.tvt.salessystem.dataobjects.SoldItem;
 import ee.ut.math.tvt.salessystem.dataobjects.StockItem;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -75,12 +76,12 @@ public class ShoppingCart {
 
             DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/dd/MM");
             DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
+            LocalDate now = LocalDate.now();
             String dateFormatted = date.format(now);
             String timeFormatted = time.format(now);
             double soldItemsTotal = calculateSoldItemsTotal();
             Set<SoldItem> copyOfSoldItems = new HashSet<SoldItem>(items);
-            Purchase purchase = new Purchase(1L ,dateFormatted, timeFormatted, soldItemsTotal, copyOfSoldItems);
+            Purchase purchase = new Purchase(1L ,now, soldItemsTotal, copyOfSoldItems);
 
             dao.savePurchase(purchase);
             dao.commitTransaction();

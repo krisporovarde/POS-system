@@ -94,9 +94,9 @@ public class HistoryController implements Initializable {
 
             if (start.isBefore(end)) {
                 for (Purchase order : dao.findPurchases()) {
-                    String date = order.getDate();
+                    LocalDate date = order.getDate();
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/dd/MM");
-                    LocalDate dateFormatted = LocalDate.parse(date, format);
+                    LocalDate dateFormatted = date;
                     if (start.isBefore(dateFormatted) && end.isAfter(dateFormatted)) {
                         betweenDatesOrders.add(order);
                     }

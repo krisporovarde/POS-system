@@ -27,25 +27,29 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public void savePurchase(Purchase purchase) {
+        List<SoldItem> list = purchase.getItems();
         beginTransaction();
-        em.persist(purchase);
-        em.flush();
+        em.merge(purchase);
         commitTransaction();
     }
 
     @Override
     public void saveStockItem(StockItem stockItem) {
         beginTransaction();
-        em.persist(stockItem);
-        em.flush();
+        if (em.find(StockItem.class, stockItem.getId()) != null) {
+            StockItem item = em.find(StockItem.class, stockItem.getId());
+            item.setQuantity(stockItem.getQuantity());
+            item.setPrice(stockItem.getPrice());
+        }else {
+            em.merge(stockItem);
+        }
         commitTransaction();
     }
 
     @Override
     public void saveSoldItem(SoldItem item) {
         beginTransaction();
-        em.persist(item);
-        em.flush();
+        em.merge(item);
         commitTransaction();
     }
 
@@ -78,20 +82,24 @@ public class HibernateSalesSystemDAO implements SalesSystemDAO {
 
     @Override
     public List<Purchase> findPurchases() {
-        return em.createQuery("SELECT Purchase FROM Purchase ", Purchase.class).getResultList();
+        beginTransaction();
+        Query query = em.createNativeQuery("SELECT * FROM Purchase", Purchase.class);
+        List<Purchase> purchase = query.getResultList();
+        commitTransaction();
+        return purchase;
     }
 
     @Override
     public List<StockItem> findStockItems() {
-        return em.createQuery("SELECT StockItem FROM StockItem", StockItem.class).getResultList();
+        beginTransaction();
+        Query query = em.createNativeQuery("SELECT * FROM StockItem", StockItem.class);
+        List<StockItem> itemList = query.getResultList();
+        commitTransaction();
+        return  itemList;
     }
 
     @Override
     public StockItem findStockItem(long id) {
-        String hql = "SELECT StockItem FROM StockItem E WHERE StockItem.id = ?1";
-        Query query = em.createQuery(hql);
-        query.setParameter(1, "%"+id+"%");
-        List results = query.getResultList();
-        return (StockItem) results;
+        return findStockItem(id);
     }
 }

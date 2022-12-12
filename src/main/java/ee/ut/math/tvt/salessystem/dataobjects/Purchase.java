@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
 import javax.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -11,20 +12,27 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="PURCHASE_ID", nullable = false)
     private Long id;
     @Column(name = "DATE")
-    private String date;
-    @Column(name = "TIME")
-    private String time;
-    @Column(name = "TOTAL")
-    private double total;
-    @ManyToMany(mappedBy = "Purchases" )
+    private LocalDate date;
+
+    @JoinTable(name="SOLDITEM_TO_PURCHASE",
+        inverseJoinColumns = @JoinColumn(name = "solditem_ID", referencedColumnName = "SOLDITEM_ID"),
+        joinColumns = @JoinColumn(name = "purchase_ID", referencedColumnName = "PURCHASE_ID"
+    )
+    )
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SoldItem> items;
 
-    public Purchase(Long id, String date, String time, double total, Set<SoldItem> items) {
+    @Column(name = "TOTAL")
+    private double total;
+
+
+    public Purchase(Long id, LocalDate date, double total, Set<SoldItem> items) {
         this.id = id;
         this.date = date;
-        this.time = time;
         this.total =total;
         this.items = items;
     }
@@ -39,14 +47,10 @@ public class Purchase {
     }
 
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-
-    public String getTime() {
-        return time;
-    }
 
     public double getTotal() {
         for (SoldItem item : items) {

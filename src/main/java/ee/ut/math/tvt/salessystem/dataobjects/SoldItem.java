@@ -1,4 +1,6 @@
 package ee.ut.math.tvt.salessystem.dataobjects;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,10 +14,14 @@ public class SoldItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SOLDITEM_ID")
     private Long id;
 
+
+    @JoinColumn(name = "STOCKITEM_SOLDITEM_ID")
+    private Long solditem_stockitem_id;
+
     @OneToOne
-    @JoinColumn(name = "STOCKITEM_ID", nullable = false)
     private StockItem stockItem;
 
     @Column(name = "SOLDITEM_QUANTITY")
@@ -30,12 +36,18 @@ public class SoldItem {
     @Column(name = "SOLDITEM_NAME")
     private String name;
 
+    /*
     @ManyToMany
     @JoinTable(
             name = "SOLDITEM_TO_ORDER",
             joinColumns = @JoinColumn(name = "SOLDITEM_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID")
     )
+     */
+
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JoinColumn(name = "PURCHASE_ID")
     private Set<Purchase> Purchases;
 
 
@@ -43,12 +55,13 @@ public class SoldItem {
     public SoldItem() {
     }
 
-    public SoldItem(StockItem stockItem, int quantity) {
+    public SoldItem(StockItem stockItem, int quantity, Long solditem_stockitem_id) {
         this.stockItem = stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
         this.sum = price * ((double) quantity);
+        this.solditem_stockitem_id = solditem_stockitem_id;
     }
 
     public Long getId() {
